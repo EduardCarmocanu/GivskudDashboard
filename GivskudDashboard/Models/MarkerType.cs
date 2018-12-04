@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GivskudApi.Models
+namespace GivskudDashboard.Models
 {
 	public class MarkerType
 	{
