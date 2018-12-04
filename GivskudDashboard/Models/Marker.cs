@@ -11,14 +11,18 @@ namespace GivskudDashboard.Models
 		public int ID { get; set; }
 		[Required]
 		[MaxLength(64)]
+		[Display(Name = "Marker Title")]
 		public string Title { get; set; }
 		[Required]
+		[Display(Name = "Latitude")]
 		public decimal Lat { get; set; }
 		[Required]
+		[Display(Name = "Longitude")]
 		public decimal Lng { get; set; }
 		[Required]
 		public Description Description { get; set; }
 		[Required]
+		[Display(Name = "Marker Type")]
 		public int MarkerTypeID { get; set; }
 	}
 }
