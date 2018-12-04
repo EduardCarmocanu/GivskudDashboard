@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GivskudApi.Models
+namespace GivskudDashboard.Models
 {
 	public class Marker
 	{

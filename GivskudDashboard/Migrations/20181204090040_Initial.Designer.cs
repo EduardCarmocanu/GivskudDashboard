@@ -21,7 +21,7 @@ namespace GivskudDashboard.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GivskudApi.Models.Description", b =>
+            modelBuilder.Entity("GivskudDashboard.Models.Description", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace GivskudDashboard.Migrations
                     b.ToTable("Descriptions");
                 });
 
-            modelBuilder.Entity("GivskudApi.Models.Marker", b =>
+            modelBuilder.Entity("GivskudDashboard.Models.Marker", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -71,7 +71,7 @@ namespace GivskudDashboard.Migrations
                     b.ToTable("Markers");
                 });
 
-            modelBuilder.Entity("GivskudApi.Models.MarkerType", b =>
+            modelBuilder.Entity("GivskudDashboard.Models.MarkerType", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -84,9 +84,9 @@ namespace GivskudDashboard.Migrations
                     b.ToTable("MarkerTypes");
                 });
 
-            modelBuilder.Entity("GivskudApi.Models.Marker", b =>
+            modelBuilder.Entity("GivskudDashboard.Models.Marker", b =>
                 {
-                    b.HasOne("GivskudApi.Models.Description", "Description")
+                    b.HasOne("GivskudDashboard.Models.Description", "Description")
                         .WithMany()
                         .HasForeignKey("DescriptionID")
                         .OnDelete(DeleteBehavior.Cascade);
