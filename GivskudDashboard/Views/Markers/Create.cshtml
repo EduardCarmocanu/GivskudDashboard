@@ -8,7 +8,10 @@
 
 <hr />
 <div class="row">
-    <div class="col-md-4">
+	<div class="col-md-6">
+		<div id="map" style="width: 100%; height: 80vh"></div>
+	</div>
+    <div class="col-md-6">
 		<form asp-action="Create">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
@@ -16,16 +19,8 @@
 				<input asp-for="Title" class="form-control" />
 				<span asp-validation-for="Title" class="text-danger"></span>
 			</div>
-			<div class="form-group">
-				<label asp-for="Lat" class="control-label"></label>
-				<input asp-for="Lat" class="form-control" type="number" />
-				<span asp-validation-for="Lat" class="text-danger"></span>
-			</div>
-			<div class="form-group">
-				<label asp-for="Lng" class="control-label"></label>
-				<input asp-for="Lng" class="form-control" type="number" />
-				<span asp-validation-for="Lng" class="text-danger"></span>
-			</div>
+			<input asp-for="Lat" class="form-control" type="hidden"/>
+			<input asp-for="Lng" class="form-control" type="hidden"/>
 			<div class="form-group">
 				<label asp-for="MarkerTypeID" class="control-label"></label>
 				<input asp-for="MarkerTypeID" class="form-control" />
@@ -54,10 +49,12 @@
 			<div class="form-group">
 				<input type="submit" value="Create" class="btn btn-default" />
 			</div>
+			<span asp-validation-for="Lat" class="text-danger"></span>
+			<span asp-validation-for="Lng" class="text-danger"></span>
 		</form>
     </div>
 </div>
-
+<br/>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
@@ -65,3 +62,10 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+	var map = new google.maps.Map(document.getElementById('map'), {
+		center: { lat: -34.397, lng: 150.644 },
+		zoom: 8
+	});
+</script>
