@@ -5,6 +5,20 @@ body {
     padding-bottom: 20px;
 }
 
+/*Removing the borderbottom from the Views/Markers/index.cshtml*/
+.table > thead > tr > th {
+    border-bottom: none;
+}
+
+/*Adjust table data layout size in Views/Markers/index.cshtml*/
+.marker-table {
+    width: 33%;
+}
+/*Adjusting button alignment on tabledata in Views/Markers/index.cshtml */
+.marker-buttons {
+    text-align: right;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
