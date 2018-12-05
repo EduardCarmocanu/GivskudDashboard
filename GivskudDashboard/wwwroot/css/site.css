@@ -10,8 +10,12 @@ body {
     border-bottom: none;
 }
 
+/*Adjust table data layout size in Views/Markers/index.cshtml*/
+.marker-table {
+    width: 33%;
+}
 /*Adjusting button alignment on tabledata in Views/Markers/index.cshtml */
-.markerbuttons {
+.marker-buttons {
     text-align: right;
 }
 
