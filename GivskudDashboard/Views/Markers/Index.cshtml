@@ -1,59 +1,59 @@
 ﻿@model IEnumerable<GivskudDashboard.Models.Marker>
 
 @{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
 <h2>All Markers</h2>
 
 <div>
-	<p>
-		<a asp-action="Create">Create New</a>
-	</p>
-	<p>
-		<a asp-action="Index">Overview</a>
-	</p>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <p>
+        <a asp-action="../Overview/Index">Overview</a>
+    </p>
 </div>
 <table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Title)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Lat)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Lng)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.MarkerTypeID)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Title)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Lat)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Lng)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.MarkerTypeID)
-				</td>
-				<td>
-					<a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
-					<a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-					<a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
-				</td>
-			</tr>
-		}
-	</tbody>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lng)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MarkerTypeID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lng)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarkerTypeID)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

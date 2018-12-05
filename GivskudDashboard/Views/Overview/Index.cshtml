@@ -1,0 +1,74 @@
+﻿@model GivskudDashboard.Models.Marker
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<template>Overview</template>
+<hr />
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <input asp-for="Title" value="--- Place for THE MAP ---" />
+        </div>
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div class="form-group">
+                    <div class="row">
+                        <table class="table">
+
+                            <tbody class="col-md-8">
+                                <tr>
+                                    <th scope="row">Title</th>
+                                    <td><input asp-for="Title" class="form-control" placeholder="Marker title" /></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Type</th>
+                                    <td><input asp-for="MarkerTypeID" class="form-control" placeholder="Marker Type" /></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Description title</th>
+                                    <td><input asp-for="Description.Title" class="form-control" placeholder="Description Title" /></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Location</th>
+                                    <td><input asp-for="Description.Location" class="form-control" placeholder="Location" /></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Feeding time</th>
+                                    <td><input asp-for="Description.FeedingTime" class="form-control" placeholder="Feeding Time" /></td>
+                                </tr>
+                            </tbody>
+                            <tbody class="col-md-4">
+                                <tr>
+                                    <th>User tips and help</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <table class="table">
+                        <tr>
+                            <th scope="row">Description</th>
+                            <td><input asp-for="Description" class="form-control" placeholder="Description" /></td>
+                        </tr>
+                    </table>
+                </div>
+                </form>
+                    <p>
+                        <a asp-action="">Edit this marker</a>
+                    </p>
+
+        </div>
+
+        
+    </div>
+
+
+
+
+       
+</main>
