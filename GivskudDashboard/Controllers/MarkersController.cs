@@ -22,6 +22,7 @@ namespace GivskudDashboard.Controllers
         // GET: Markers
         public async Task<IActionResult> Index()
         {
+			ViewBag.Types = _context.MarkerTypes.ToDictionary(x => x.ID);
             return View(await _context.Markers.ToListAsync());
         }
 
