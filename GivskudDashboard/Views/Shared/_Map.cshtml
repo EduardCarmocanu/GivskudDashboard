@@ -1,0 +1,84 @@
+﻿
+<div id="map" style="width: 100%; height: 80vh"></div>
+
+<script>
+	var map,
+		bounds = {
+			NE: new google.maps.LatLng(16.0, 26.0),
+			SW: new google.maps.LatLng(-57.0, -77.0)
+		},
+		zooMap
+
+	function CheckBoundries() {
+		var correctionBoundries = []
+
+		if (map.getBounds().getNorthEast().lat() > bounds.NE.lat()) {
+			correctionBoundries.push("N")
+		}
+		if (map.getBounds().getNorthEast().lng() > bounds.NE.lng()) {
+			correctionBoundries.push("E")
+		}
+		if (map.getBounds().getSouthWest().lat() < bounds.SW.lat()) {
+			correctionBoundries.push("S")
+		}
+		if (map.getBounds().getSouthWest().lng() < bounds.SW.lng()) {
+			correctionBoundries.push("W")
+		}
+
+		CorrectBoundries(correctionBoundries)
+	}
+
+	function CorrectBoundries(boundries) {
+		if (boundries.length > 0) {
+			var N = map.getBounds().getNorthEast().lat();
+			var E = map.getBounds().getNorthEast().lng();
+			var S = map.getBounds().getSouthWest().lat();
+			var W = map.getBounds().getSouthWest().lng();
+
+			for (var i = 0; i < boundries.length; i++) {
+				switch (boundries[i]) {
+					case 'N':
+						N = bounds.NE.lat() - 0.1;
+						break;
+					case 'E':
+						E = bounds.NE.lng() - 0.1;
+						break;
+					case 'S':
+						S = bounds.SW.lat() + 0.1
+						break;
+					case 'W':
+						W = bounds.SW.lng() + 0.1
+						break;
+					default:
+						break;
+				}
+			}
+			map.fitBounds(new google.maps.LatLngBounds(
+				new google.maps.LatLng(N, W),
+				new google.maps.LatLng(S, E)
+			));
+			map.setZoom(4);
+		}
+	}
+
+	map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 1,
+		gestureHandling: 'greedy',
+		center: new google.maps.LatLng(-29.75793622766235, -13.175032659343287),
+		disableDefaultUI: true,
+		streetViewControl: false,
+		mapTypeControlOptions: {
+			mapTypeIds: ['zoo']
+		},
+	});
+	zooMap = new google.maps.ImageMapType({
+		tileSize: new google.maps.Size(1173, 932),
+		getTileUrl: function () { return "/images/map-overlay.png" },
+		maxZoom: 4,
+		minZoom: 4,
+		name: 'zoo'
+	});
+	map.mapTypes.set('zoo', zooMap);
+	map.setMapTypeId('zoo');
+	map.addListener('bounds_changed', CheckBoundries)
+</script>
