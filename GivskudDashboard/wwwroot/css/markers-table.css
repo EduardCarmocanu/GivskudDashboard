@@ -1,0 +1,21 @@
+﻿.markers-table tr td:first-child {
+	display: flex;
+	align-items: center;
+	border-top: none;
+}
+
+	.markers-table tr td:first-child p {
+		margin-left: 10px;
+	}
+
+	.markers-table tr td:first-child div {
+		height: 40px;
+		border: 1px solid lightgray;	
+		width: 40px;
+		border-radius: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		padding: 30px;
+	}

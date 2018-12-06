@@ -7,39 +7,42 @@
 <h2>All Markers</h2>
 
 
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MarkerTypeID)
-                </th>
-                <th class="marker-buttons">        
-                    <a class="btn btn-primary" asp-action="Create">Create New</a>
-                    <a class="btn btn-primary" asp-action="Index">Overview</a>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="marker-table">
-                        (img here)
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td class="marker-table">
-
-                        @Html.DisplayFor(modelItem => item.MarkerTypeID)
-                    </td>
-					<td class="<mark></mark>er-table marker-buttons">
-						<a class="btn text-danger" role="button" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-						<a class="btn btn-info" role="button" asp-action="Details" asp-route-id="@item.ID">View</a>
-						<a class="btn btn-info" role="button" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
-					</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<table class="markers-table table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Title)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.MarkerTypeID)
+			</th>
+			<th class="text-right">
+				<a class="btn btn-primary" asp-action="Create">Create New</a>
+				<a class="btn btn-primary" asp-action="Index">Overview</a>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					<div>
+						<img src="~/images/types/@(ViewBag.Types[item.MarkerTypeID].Name).png" alt="#" />
+					</div>
+					<p>
+						@Html.DisplayFor(modelItem => item.Title)
+					</p>
+				</td>
+				<td>
+					<p>@ViewBag.Types[item.MarkerTypeID].Name</p>
+				</td>
+				<td class="text-right">
+					<a class="btn text-danger" role="button" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+					<a class="btn btn-info" role="button" asp-action="Details" asp-route-id="@item.ID">View</a>
+					<a class="btn btn-info" role="button" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
