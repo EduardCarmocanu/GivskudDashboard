@@ -46,6 +46,7 @@ namespace GivskudDashboard.Controllers
         // GET: Markers/Create
         public IActionResult Create()
         {
+			ViewBag.Types = _context.MarkerTypes.ToList();
             return View();
         }
 
