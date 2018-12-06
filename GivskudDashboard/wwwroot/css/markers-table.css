@@ -10,7 +10,7 @@
 
 	.markers-table tr td:first-child div {
 		height: 40px;
-		border: 1px solid lightgray;	
+		border: 1px solid lightgray;
 		width: 40px;
 		border-radius: 100%;
 		display: flex;
@@ -19,3 +19,12 @@
 		overflow: hidden;
 		padding: 30px;
 	}
+
+.markers-table tr .type-column p {
+	margin-top: 20px;
+}
+
+.markers-table tr .actions-column a {
+	margin-top: 10px;
+}
+

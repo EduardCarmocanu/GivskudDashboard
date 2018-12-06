@@ -7,7 +7,7 @@
 <h2>All Markers</h2>
 
 
-<table class="markers-table table table-striped table-hover">
+<table class="markers-table table table-hover">
 	<thead>
 		<tr>
 			<th>
@@ -34,10 +34,10 @@
 						@Html.DisplayFor(modelItem => item.Title)
 					</p>
 				</td>
-				<td>
+				<td class="type-column">
 					<p>@ViewBag.Types[item.MarkerTypeID].Name</p>
 				</td>
-				<td class="text-right">
+				<td class="text-right actions-column">
 					<a class="btn text-danger" role="button" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
 					<a class="btn btn-info" role="button" asp-action="Details" asp-route-id="@item.ID">View</a>
 					<a class="btn btn-info" role="button" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
