@@ -63,7 +63,7 @@ namespace GivskudDashboard
 				app.UseHsts();
 			}
 
-			app.UseCors();
+			app.UseCors("GivskudPolicy");
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
