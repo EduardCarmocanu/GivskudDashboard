@@ -20,10 +20,10 @@ namespace GivskudDashboard.Controllers
         }
 
         // GET: Markers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
 			ViewBag.Types = _context.MarkerTypes.ToDictionary(x => x.ID);
-            return View(await _context.Markers.ToListAsync());
+            return View(_context.Markers.ToList());
         }
 
         // GET: Markers/Details/5
@@ -56,12 +56,12 @@ namespace GivskudDashboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,Lat,Lng,MarkerTypeID,Description")] Marker marker)
+        public IActionResult Create([Bind("ID,Title,Lat,Lng,MarkerTypeID,Description")] Marker marker)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(marker);
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             return View(marker);
