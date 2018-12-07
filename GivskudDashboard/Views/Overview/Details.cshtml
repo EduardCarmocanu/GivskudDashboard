@@ -1,0 +1,60 @@
+﻿@model GivskudDashboard.Models.Marker
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="row">
+	<div class="col-md-6">
+		@Html.Partial("_Map")
+	</div>
+	<div class="col-md-6">
+		<h3>Please click on one of the markers to view details</h3>
+		<p>By doing so, you will be shown the details for the marker you have clicked on</p>
+		<hr />
+		<h4>Marker Details</h4>
+		<br />
+		<p>@Model.Title</p>
+		<br />
+		<p>@ViewBag.Types[Model.MarkerTypeID].Name</p>
+		<br />
+		<p>@Model.Description.Title</p>
+		<br />
+		<p>@Model.Description.Location</p>
+		<br />
+		<p>Feeding time @Model.Description.FeedingTime.ToString()</p>
+		<br />
+		<p>@Model.Description.Body</p>
+		<br />
+		<a class="btn btn-default" asp-controller="Markers" asp-action="Edit" asp-route-id="@Model.ID">Edit Marker</a>
+	</div>
+</div>
+
+<script>
+	var markers = @Json.Serialize(ViewBag.MarkersList);
+	var activeMarkerID = @Json.Serialize(Model.ID);
+	var coordinates = {
+		lat: @Json.Serialize(ViewBag.Lat),
+		lng: @Json.Serialize(ViewBag.Lng)
+	}
+
+	map.setCenter(new google.maps.LatLng(coordinates.lat, coordinates.lng));
+
+	for (var i = 0, n = markers.length; i < n; i++) {
+		console.log(markers[i])
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
+			markerID: markers[i].id
+		});
+
+		if (marker.markerID === activeMarkerID) {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+
+		marker.setMap(map);	
+		marker.addListener("click", function () {
+			window.location = "/Overview/details/" + this.markerID + "?lat=" + this.position.lat() + "&lng=" + this.position.lng();
+		});
+	}
+</script>
