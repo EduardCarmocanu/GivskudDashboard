@@ -7,6 +7,8 @@ using GivskudDashboard.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GivskudDashboard.Controllers
 {
@@ -27,7 +29,7 @@ namespace GivskudDashboard.Controllers
         [HttpGet]
         public Marker[] Get()
         {
-			return _context.Markers.ToArray();
+			return _context.Markers.Include(m => m.Description).ToArray();
         }
     }
 }
