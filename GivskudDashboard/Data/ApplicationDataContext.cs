@@ -28,7 +28,7 @@ namespace GivskudDashboard.Data
 					new MarkerType() { ID = 5, Name = "Restaurant" },
 					new MarkerType() { ID = 6, Name = "Playground" },
 					new MarkerType() { ID = 7, Name = "Picknick" },
-					new MarkerType() { ID = 8, Name = "Icecram" },
+					new MarkerType() { ID = 8, Name = "Icecream" },
 					new MarkerType() { ID = 9, Name = "Parking" }
 				);
 		}
