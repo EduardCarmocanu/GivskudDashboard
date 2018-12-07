@@ -15,3 +15,7 @@ td {
 p {
 	margin: initial;
 }
+
+textarea {
+	min-height: 200px;
+}
