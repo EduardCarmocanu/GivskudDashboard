@@ -31,3 +31,18 @@
 		<p class="btn btn-default disabled">Edit Marker</p>
 	</div>
 </div>
+
+<script>
+	var markers = @Json.Serialize(Model);
+
+	for (var i = 0, n = markers.length; i < n; i++) {
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(markers[i].lat, markers[i].lng),
+			
+		});
+		marker.setMap(map);	
+		marker.addListener("click", function () {
+			window.location = "/Overview/details/" + 
+		});
+	}
+</script>

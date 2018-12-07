@@ -22,7 +22,9 @@ namespace GivskudDashboard.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			var markers = _context.Markers.ToArray();
+
+			return View(markers);
 		}
     }
 }
