@@ -133,7 +133,7 @@ namespace GivskudDashboard.Controllers
                 return NotFound();
             }
 
-            return View(marker);
+            return RedirectToAction("Index");
         }
 
         // POST: Markers/Delete/5
