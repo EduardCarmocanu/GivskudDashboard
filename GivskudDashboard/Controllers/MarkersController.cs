@@ -75,7 +75,7 @@ namespace GivskudDashboard.Controllers
                 return NotFound();
             }
 
-            var marker = await _context.Markers.FindAsync(id);
+            var marker = await _context.Markers.Include(m => m.Description).SingleOrDefaultAsync(m => m.ID == id);
             if (marker == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace GivskudDashboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Lat,Lng,MarkerTypeID")] Marker marker)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Lat,Lng,MarkerTypeID,Description")] Marker marker)
         {
             if (id != marker.ID)
             {
@@ -113,7 +113,7 @@ namespace GivskudDashboard.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Overview", new { id = marker.ID, lat = marker.Lat, lng = marker.Lng});
             }
             return View(marker);
         }
