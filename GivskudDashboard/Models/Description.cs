@@ -20,7 +20,7 @@ namespace GivskudDashboard.Models
 		[Display(Name = "Marker Location")]
 		public string Location { get; set; }
 
-		[DataType(DataType.DateTime)]
+		[DataType(DataType.Time)]
 		[Display(Name = "Feeding Time")]
 		public DateTime? FeedingTime { get; set; }
 
