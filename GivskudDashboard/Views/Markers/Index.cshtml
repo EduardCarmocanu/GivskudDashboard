@@ -38,8 +38,8 @@
 					<p>@ViewBag.Types[item.MarkerTypeID].Name</p>
 				</td>
 				<td class="text-right actions-column">
-					<a class="btn text-danger" role="button" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-					<a class="btn btn-info" role="button" asp-action="Details" asp-route-id="@item.ID">View</a>
+					<a class="btn text-danger" role="button" @*asp-action="Delete" asp-route-id="@item.ID"*@>Delete</a>
+					<a class="btn btn-info" role="button" asp-action="Details" asp-controller="Overview" asp-route-id="@item.ID" asp-route-lat="@item.Lat" asp-route-lng="@item.Lng">View</a>
 					<a class="btn btn-info" role="button" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
 				</td>
 			</tr>
