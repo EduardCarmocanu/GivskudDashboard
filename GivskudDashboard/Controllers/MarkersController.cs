@@ -133,7 +133,7 @@ namespace GivskudDashboard.Controllers
                 return NotFound();
             }
 
-            return View(marker);
+            return RedirectToAction("Index");
         }
 
         // POST: Markers/Delete/5
@@ -144,6 +144,7 @@ namespace GivskudDashboard.Controllers
             var marker = await _context.Markers.FindAsync(id);
             _context.Markers.Remove(marker);
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
 
