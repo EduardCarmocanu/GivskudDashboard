@@ -19,3 +19,9 @@ p {
 textarea {
 	min-height: 200px;
 }
+
+input.disabled {
+	opacity: 0.7;
+	pointer-events: none;	
+	background-color: rgb(240, 240, 240);
+}
