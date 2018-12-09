@@ -5,6 +5,8 @@
 
 <h2>Details</h2>
 
+<hr/>
+
 <div class="row">
 	<div class="col-md-6">
 		@Html.Partial("_Map")
@@ -25,7 +27,7 @@
 		<br />
 		<p>Feeding time @Model.Description.FeedingTime.ToString()</p>
 		<br />
-		<p>@Model.Description.Body</p>
+		<p>@Html.Raw(Model.Description.Body)</p>
 		<br />
 		<a class="btn btn-default" asp-controller="Markers" asp-action="Edit" asp-route-id="@Model.ID">Edit Marker</a>
 	</div>
