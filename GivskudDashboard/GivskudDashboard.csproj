@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\NewFolder\" />
-    <Folder Include="Views\Shared\Map\" />
   </ItemGroup>
 
 </Project>

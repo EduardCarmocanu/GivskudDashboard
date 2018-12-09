@@ -6,6 +6,8 @@
 
 <h2>All Markers</h2>
 
+@Html.Partial("_DeleteConfirmationModal");
+
 
 <table class="markers-table table table-hover">
 	<thead>
@@ -38,7 +40,7 @@
 					<p>@ViewBag.Types[item.MarkerTypeID].Name</p>
 				</td>
 				<td class="text-right actions-column">
-					<a class="btn text-danger" role="button" @*asp-action="Delete" asp-route-id="@item.ID"*@>Delete</a>
+					<a type="button" class="btn text-danger" data-toggle="modal" data-target="#exampleModal" onclick="setId(@item.ID)">Delete</a>
 					<a class="btn btn-info" role="button" asp-action="Details" asp-controller="Overview" asp-route-id="@item.ID" asp-route-lat="@item.Lat" asp-route-lng="@item.Lng">View</a>
 					<a class="btn btn-info" role="button" asp-action="Edit" asp-route-id="@item.ID">Edit</a>
 				</td>
@@ -46,3 +48,11 @@
 		}
 	</tbody>
 </table>
+
+<script>
+	var deleteButton = document.getElementById("delete-confirm-button")
+	function setId(id) 
+	{
+		deleteButton.setAttribute("href", "/Markers/Delete/" + id);
+	}
+</script>

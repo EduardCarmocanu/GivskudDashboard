@@ -118,34 +118,30 @@ namespace GivskudDashboard.Controllers
             return View(marker);
         }
 
-        // GET: Markers/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Markers/Delete/5
+		[ActionName("Delete")]
+		public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var marker = await _context.Markers
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (marker == null)
+            var marker = _context.Markers.Include(m => m.Description).FirstOrDefault(m => m.ID == id);
+			var description = _context.Descriptions.FirstOrDefault(d => d.ID == marker.Description.ID);
+
+			if (marker == null || description == null)
             {
                 return NotFound();
             }
 
-            return RedirectToAction("Index");
+			_context.Markers.Remove(marker);
+			_context.Descriptions.Remove(description);
+			_context.SaveChanges();
+
+			return RedirectToAction("Index");
         }
 
-        // POST: Markers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var marker = await _context.Markers.FindAsync(id);
-            _context.Markers.Remove(marker);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
 
         private bool MarkerExists(int id)
         {
