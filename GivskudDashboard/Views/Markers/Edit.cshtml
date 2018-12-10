@@ -8,6 +8,9 @@
 
 <h4>Marker</h4>
 <hr />
+
+@Html.Partial("_DiscardChangesConfirmationModal")
+
 <div class="row">
 	<form asp-action="Edit">
 		<div class="col-md-6">
@@ -62,7 +65,7 @@
 				<span asp-validation-for="Description.Body" class="text-danger"></span>
 			</div>
 			<input type="submit" value="Save" class="btn btn-default" />
-			<a class="btn btn-info" asp-action="Index">Back to List</a>
+			<a type="button" class="btn btn-danger" data-toggle="modal" data-target="#discard-changes-confirmation-modal">Discard Changes</a>
 		</div>
 	</form>
 </div>
@@ -80,9 +83,10 @@
 		lngInput = document.getElementById("lng");
 
 	marker = new google.maps.Marker({
-		position: new google.maps.LatLng(-29.75793622766235, -13.175032659343287),
+		position: new google.maps.LatLng(latInput.value, lngInput.value),
 	});
 	marker.setMap(map);
+	map.setCenter(new google.maps.LatLng(latInput.value, lngInput.value));
 
 	map.addListener('click', (e) => {
 		latInput.value = e.latLng.lat();
