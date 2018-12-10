@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using GivskudDashboard.Data;
 using GivskudDashboard.Models;
-using GivskudDashboard.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
