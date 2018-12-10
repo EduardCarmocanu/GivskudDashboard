@@ -26,11 +26,13 @@
 		<p>@Model.Description.Location</p>
 		<br />
 		<p>Feeding time @Model.Description.FeedingTime.ToString()</p>
-		<br />
+	</div>
+	<div class="col-md-12">
 		<p>@Html.Raw(Model.Description.Body)</p>
 		<br />
 		<a class="btn btn-default" asp-controller="Markers" asp-action="Edit" asp-route-id="@Model.ID">Edit Marker</a>
 	</div>
+	
 </div>
 
 <script>
