@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +44,16 @@ namespace GivskudDashboard
 			{
 				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 			});
+			services.AddDbContext<IdentityDataContext>(options =>
+			{
+				options.UseSqlServer(Configuration.GetConnectionString("IdentityDataContext"));
+			});
+
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+			services.AddIdentity<IdentityUser, IdentityRole>()
+				.AddEntityFrameworkStores<IdentityDataContext>();
+
 			services.AddCors(options =>
 			{
 				options.AddPolicy("GivskudPolicy",
@@ -57,7 +67,7 @@ namespace GivskudDashboard
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, UserManager<IdentityUser> userManager)
 		{
 			if (env.IsDevelopment())
 			{
@@ -73,7 +83,8 @@ namespace GivskudDashboard
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
-
+			IdentityDbInitializer.SeedUsers(userManager);
+			app.UseAuthentication();
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
