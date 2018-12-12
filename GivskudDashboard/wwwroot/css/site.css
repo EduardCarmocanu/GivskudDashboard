@@ -25,3 +25,8 @@ input.disabled {
 	pointer-events: none;	
 	background-color: rgb(240, 240, 240);
 }
+
+.main-navbar {
+	display: flex;
+	align-items: center;
+}
