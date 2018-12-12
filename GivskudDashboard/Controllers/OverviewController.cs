@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using GivskudDashboard.Data;
 using GivskudDashboard.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 namespace GivskudDashboard.Controllers
 {
+	[Authorize]
     public class OverviewController : Controller
     {
 		private readonly ApplicationDataContext _context;

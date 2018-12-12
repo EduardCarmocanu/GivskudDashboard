@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GivskudDashboard.Models;
 using GivskudDashboard.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GivskudDashboard.Controllers
 {
-    public class MarkersController : Controller
+	[Authorize]
+	public class MarkersController : Controller
     {
         private readonly ApplicationDataContext _context;
 
@@ -19,8 +21,8 @@ namespace GivskudDashboard.Controllers
             _context = context;
         }
 
-        // GET: Markers
-        public IActionResult Index()
+		// GET: Markers
+		public IActionResult Index()
         {
 			ViewBag.Types = _context.MarkerTypes.ToDictionary(x => x.ID);
             return View(_context.Markers.ToList());
@@ -80,6 +82,9 @@ namespace GivskudDashboard.Controllers
             {
                 return NotFound();
             }
+
+			ViewBag.Types = _context.MarkerTypes.ToList();
+
             return View(marker);
         }
 
