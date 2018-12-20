@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace GivskudDashboard.Controllers
 {
 	[Authorize]
-    public class OverviewController : Controller
+	public class OverviewController : Controller
     {
 		private readonly ApplicationDataContext _context;
 
