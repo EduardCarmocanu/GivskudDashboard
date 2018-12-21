@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GivskudDashboard.Models.Marker>
+﻿@model GivskudDashboard.ViewModels.AllMarkersViewModel
 
 @{
 	ViewData["Title"] = "Index";
@@ -12,10 +12,10 @@
 	<thead>
 		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.Title)
+				@Model.ColumnTitles[0]
 			</th>
 			<th>
-				@Html.DisplayNameFor(model => model.MarkerTypeID)
+				@Model.ColumnTitles[1]
 			</th>
 			<th class="text-right">
 				<a class="btn btn-primary" asp-action="Create">Create New</a>
@@ -24,19 +24,19 @@
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var item in Model)
+		@foreach (var item in Model.Markers)
 		{
 			<tr>
 				<td>
 					<div>
-						<img src="~/images/types/@(ViewBag.Types[item.MarkerTypeID].Name).png" alt="#" />
+						<img src="~/images/types/@(Model.Types[item.MarkerTypeID - 1].Name).png" alt="#" />
 					</div>
 					<p>
 						@Html.DisplayFor(modelItem => item.Title)
 					</p>
 				</td>
 				<td class="type-column">
-					<p>@ViewBag.Types[item.MarkerTypeID].Name</p>
+					<p>@Model.Types[item.MarkerTypeID - 1].Name</p>
 				</td>
 				<td class="text-right actions-column">
 					<a type="button" class="btn text-danger" data-toggle="modal" data-target="#exampleModal" onclick="setId(@item.ID)">Delete</a>

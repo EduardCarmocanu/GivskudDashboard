@@ -1,4 +1,4 @@
-﻿@model GivskudDashboard.Models.Marker
+﻿@model GivskudDashboard.ViewModels.OverviewViewModel
 @{
     ViewData["Title"] = "Details";
 }
@@ -17,30 +17,30 @@
 		<hr />
 		<h4>Marker Details</h4>
 		<br />
-		<p>@Model.Title</p>
+		<p>@Model.ActiveMarker.Title</p>
 		<br />
-		<p>@ViewBag.Types[Model.MarkerTypeID].Name</p>
+		<p>@Model.Types[Model.ActiveMarker.MarkerTypeID - 1].Name</p>
 		<br />
-		<p>@Model.Description.Title</p>
+		<p>@Model.ActiveMarker.Description.Title</p>
 		<br />
-		<p>@Model.Description.Location</p>
+		<p>@Model.ActiveMarker.Description.Location</p>
 		<br />
-		<p>Feeding time @Model.Description.FeedingTime.ToString()</p>
+		<p>Feeding time @Model.ActiveMarker.Description.FeedingTime.ToString()</p>
 	</div>
 	<div class="col-md-12">
-		<p>@Html.Raw(Model.Description.Body)</p>
+		<p>@Html.Raw(Model.ActiveMarker.Description.Body)</p>
 		<br />
-		<a class="btn btn-default" asp-controller="Markers" asp-action="Edit" asp-route-id="@Model.ID">Edit Marker</a>
+		<a class="btn btn-default" asp-controller="Markers" asp-action="Edit" asp-route-id="@Model.ActiveMarker.ID">Edit Marker</a>
 	</div>
 	
 </div>
 
 <script>
-	var markers = @Json.Serialize(ViewBag.MarkersList);
-	var activeMarkerID = @Json.Serialize(Model.ID);
+	var markers = @Json.Serialize(Model.Markers);
+	var activeMarkerID = @Json.Serialize(Model.ActiveMarker.ID);
 	var coordinates = {
-		lat: @Json.Serialize(ViewBag.Lat),
-		lng: @Json.Serialize(ViewBag.Lng)
+		lat: @Json.Serialize(Model.Lat),
+		lng: @Json.Serialize(Model.Lng)
 	}
 
 	map.setCenter(new google.maps.LatLng(coordinates.lat, coordinates.lng));

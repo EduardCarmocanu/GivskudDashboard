@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GivskudDashboard.Data;
 using GivskudDashboard.Models;
+using GivskudDashboard.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,41 +22,41 @@ namespace GivskudDashboard.Controllers
 			_context = context;
 		}
 
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
 		{
-			var markers = _context.Markers.ToArray();
+			Marker[] markers = await _context.Markers.ToArrayAsync();
 			return View(markers);
 		}
 
-		public IActionResult Details(int? id, decimal? lat, decimal? lng)
+		public async Task<IActionResult> Details(int? id, decimal? lat, decimal? lng)
 		{
 			if (id == null)
 			{
 				return RedirectToAction("Index");
 			}
 
-			var marker = _context.Markers
+			var activeMarker = await _context.Markers
 				.Include(m => m.Description)
-				.SingleOrDefault(m => m.ID == id);
+				.SingleOrDefaultAsync(m => m.ID == id);
 
-			if (marker == null)
+			if (activeMarker == null)
 			{
 				return RedirectToAction("Index");
 			}
 
-			var markersList = _context.Markers.ToArray();
-			var types = _context.MarkerTypes.ToDictionary(t => t.ID);
+			Marker[] markers = await _context.Markers.ToArrayAsync();
+			MarkerType[] types = await _context.MarkerTypes.ToArrayAsync();
 
-			ViewBag.MarkersList = markersList;
-			ViewBag.Types = types;
-
-			if (lat != null && lat != null)
+			OverviewViewModel viewModel = new OverviewViewModel()
 			{
-				ViewBag.Lat = lat;
-				ViewBag.Lng = lng;
-			}
+				Lat = lat,
+				Lng = lng,
+				Markers = markers,
+				Types = types,
+				ActiveMarker = activeMarker
+			};
 
-			return View(marker);
+			return View(viewModel);
 		}
     }
 }

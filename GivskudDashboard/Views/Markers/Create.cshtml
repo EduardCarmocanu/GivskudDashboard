@@ -1,4 +1,4 @@
-﻿@model GivskudDashboard.Models.Marker
+﻿@model GivskudDashboard.ViewModels.CreateMarkerViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -15,52 +15,52 @@
 		<div class="col-md-6">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
-				<label asp-for="Title" class="control-label"></label>
-				<input asp-for="Title" class="form-control" />
-				<span asp-validation-for="Title" class="text-danger"></span>
+				<label asp-for="Marker.Title" class="control-label"></label>
+				<input asp-for="Marker.Title" class="form-control" />
+				<span asp-validation-for="Marker.Title" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="Lat" class="control-label"></label>
-				<input asp-for="Lat" class="form-control disabled" id="lat" type="number"/>
-				<span asp-validation-for="Lat" class="text-danger"></span>
+				<label asp-for="Marker.Lat" class="control-label"></label>
+				<input asp-for="Marker.Lat" class="form-control disabled" id="lat" type="number"/>
+				<span asp-validation-for="Marker.Lat" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="Lng" class="control-label"></label>
-				<input asp-for="Lng" class="form-control disabled" id="lng" type="number"/>
-				<span asp-validation-for="Lng" class="text-danger"></span>
+				<label asp-for="Marker.Lng" class="control-label"></label>
+				<input asp-for="Marker.Lng" class="form-control disabled" id="lng" type="number"/>
+				<span asp-validation-for="Marker.Lng" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="MarkerTypeID" class="control-label"></label>
-				<select asp-for="MarkerTypeID" class="form-control">
-					@foreach (var type in ViewBag.Types)
+				<label asp-for="Marker.MarkerTypeID" class="control-label"></label>
+				<select asp-for="Marker.MarkerTypeID" class="form-control">
+					@foreach (var type in Model.Types)
 					{
 						<option value="@type.ID">@type.Name</option>
 					}
 				</select>
-				<span asp-validation-for="MarkerTypeID" class="text-danger"></span>
+				<span asp-validation-for="Marker.MarkerTypeID" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="Description.Title" class="control-label"></label>
-				<input asp-for="Description.Title" class="form-control" />
-				<span asp-validation-for="Description.Title" class="text-danger"></span>
+				<label asp-for="Marker.Description.Title" class="control-label"></label>
+				<input asp-for="Marker.Description.Title" class="form-control" />
+				<span asp-validation-for="Marker.Description.Title" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="Description.Location" class="control-label"></label>
-				<input asp-for="Description.Location" class="form-control" />
-				<span asp-validation-for="Description.Location" class="text-danger"></span>
+				<label asp-for="Marker.Description.Location" class="control-label"></label>
+				<input asp-for="Marker.Description.Location" class="form-control" />
+				<span asp-validation-for="Marker.Description.Location" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<label asp-for="Description.FeedingTime" class="control-label"></label>
-				<input asp-for="Description.FeedingTime" class="form-control" />
-				<span asp-validation-for="Description.FeedingTime" class="text-danger"></span>
+				<label asp-for="Marker.Description.FeedingTime" class="control-label"></label>
+				<input asp-for="Marker.Description.FeedingTime" class="form-control" />
+				<span asp-validation-for="Marker.Description.FeedingTime" class="text-danger"></span>
 			</div>
 		</div>
 		<div class="col-md-12">
 			<br />
 			<div class="form-group">
-				<label asp-for="Description.Body" class="control-label"></label>
-				<textarea asp-for="Description.Body" class="form-control"></textarea>
-				<span asp-validation-for="Description.Body" class="text-danger"></span>
+				<label asp-for="Marker.Description.Body" class="control-label"></label>
+				<textarea asp-for="Marker.Description.Body" class="form-control"></textarea>
+				<span asp-validation-for="Marker.Description.Body" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<input type="submit" value="Create Marker" class="btn btn-success" />
@@ -77,7 +77,7 @@
 }
 
 <script>
-	CKEDITOR.replace('Description.Body');
+	CKEDITOR.replace('Marker.Description.Body');
 
 	var marker,
 		latInput = document.getElementById("lat"),

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GivskudDashboard.Models;
 using GivskudDashboard.Data;
 using Microsoft.AspNetCore.Authorization;
+using GivskudDashboard.ViewModels;
 
 namespace GivskudDashboard.Controllers
 {
@@ -16,16 +17,25 @@ namespace GivskudDashboard.Controllers
     {
         private readonly ApplicationDataContext _context;
 
-        public MarkersController(ApplicationDataContext context)
+		public MarkersController(ApplicationDataContext context)
         {
             _context = context;
         }
 
 		// GET: Markers
-		public IActionResult Index()
+		public async Task<IActionResult> Index()
         {
-			ViewBag.Types = _context.MarkerTypes.ToDictionary(x => x.ID);
-            return View(_context.Markers.ToList());
+			ViewBag.Types = await _context.MarkerTypes.ToArrayAsync();
+			List<Marker> markers = await _context.Markers.ToListAsync();
+
+			AllMarkersViewModel viewModel = new AllMarkersViewModel()
+			{
+				ColumnTitles = new String[] { "Marker Title", "Marker Type" },
+				Markers = _context.Markers.ToList(),
+				Types = _context.MarkerTypes.ToArray()
+			};
+
+			return View(viewModel);
         }
 
         // GET: Markers/Details/5
@@ -36,8 +46,8 @@ namespace GivskudDashboard.Controllers
                 return NotFound();
             }
 
-            var marker = await _context.Markers
-                .FirstOrDefaultAsync(m => m.ID == id);
+            var marker = await _context.Markers.FirstOrDefaultAsync(m => m.ID == id);
+
             if (marker == null)
             {
                 return NotFound();
@@ -47,15 +57,17 @@ namespace GivskudDashboard.Controllers
         }
 
         // GET: Markers/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-			ViewBag.Types = _context.MarkerTypes.ToList();
-            return View();
+			CreateMarkerViewModel viewModel = new CreateMarkerViewModel()
+			{
+				Types = await _context.MarkerTypes.ToListAsync(),
+				Marker = new Marker()
+			};
+ 
+			return View(viewModel);
         }
 
-        // POST: Markers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("ID,Title,Lat,Lng,MarkerTypeID,Description")] Marker marker)
@@ -83,14 +95,17 @@ namespace GivskudDashboard.Controllers
                 return NotFound();
             }
 
-			ViewBag.Types = _context.MarkerTypes.ToList();
+			List<MarkerType> types = _context.MarkerTypes.ToList();
 
-            return View(marker);
+			EditMarkerViewModel viewModel = new EditMarkerViewModel()
+			{
+				Marker = marker,
+				Types = types
+			};
+
+            return View(viewModel);
         }
 
-        // POST: Markers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Lat,Lng,MarkerTypeID,Description")] Marker marker)
