@@ -15,21 +15,23 @@ namespace GivskudDashboard.Controllers
     [Route("api/[controller]")]
     [ApiController]
 	[EnableCors("GivskudPolicy")]
-    public class MarkersApiController : ControllerBase
+    public class GetMarkersController : ControllerBase
     {
 
 		private readonly ApplicationDataContext _context;
 
-		public MarkersApiController(ApplicationDataContext context)
+		public GetMarkersController(ApplicationDataContext context)
 		{
 			_context = context;
 		}
 
-        // GET: api/MarkersApi
-        [HttpGet]
-        public Marker[] Get()
-        {
-			return _context.Markers.Include(m => m.Description).ToArray();
-        }
+		// GET: api/GetMarkers
+		[HttpGet]
+		public async Task<IActionResult> GetMarkers ()
+		{
+			Marker[] markers = await _context.Markers.Include(m => m.Description).ToArrayAsync();
+
+			return Ok(markers);
+		}
     }
 }

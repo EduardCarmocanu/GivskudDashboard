@@ -7,26 +7,29 @@ using GivskudDashboard.Models;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GivskudDashboard.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
 	[EnableCors("GivskudPolicy")]
-    public class MarkerTypesApiController : ControllerBase
+    public class GetTypesController : ControllerBase
     {
 		private readonly ApplicationDataContext _context;
 
-		public MarkerTypesApiController(ApplicationDataContext context)
+		public GetTypesController(ApplicationDataContext context)
 		{
 			_context = context;
 		}
 
-		// GET: api/MarkerTypesApi
+		// GET: api/GetTypes/
 		[HttpGet]
-		public MarkerType[] Get()
+		public async Task<IActionResult> GetTypes()
 		{
-			return _context.MarkerTypes.ToArray();
+			MarkerType[] markers = await _context.MarkerTypes.ToArrayAsync();
+
+			return Ok(markers);
 		}
 	}
 }
