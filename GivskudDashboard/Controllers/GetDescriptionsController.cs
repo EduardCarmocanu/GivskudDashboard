@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GivskudDashboard.Data;
 using GivskudDashboard.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace GivskudDashboard.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GetDescriptionsController : ControllerBase
+	[EnableCors("GivskudPolicy")]
+	public class GetDescriptionsController : ControllerBase
     {
         private readonly ApplicationDataContext _context;
 
