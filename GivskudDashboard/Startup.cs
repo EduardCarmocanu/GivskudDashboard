@@ -59,7 +59,7 @@ namespace GivskudDashboard
 				options.AddPolicy("GivskudPolicy",
 					policy =>
 					{
-						policy.WithOrigins("https://givskud.azurewebsites.net/", "http://localhost:8080/")
+						policy.WithOrigins("https://givskud.azurewebsites.net", "http://localhost:8080")
 							.AllowAnyHeader()
 							.AllowAnyMethod();
 					});
