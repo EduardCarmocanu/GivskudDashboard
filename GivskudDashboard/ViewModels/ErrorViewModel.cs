@@ -1,6 +1,6 @@
 using System;
 
-namespace GivskudDashboard.Models
+namespace GivskudDashboard.ViewModels
 {
 	public class ErrorViewModel
 	{
