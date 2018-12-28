@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GivskudDashboard.Migrations
 {
-    [DbContext(typeof(ApplicationDataContext))]
+    [DbContext(typeof(MarkersDataContext))]
     [Migration("20181209154536_TimeFormat")]
     partial class TimeFormat
     {

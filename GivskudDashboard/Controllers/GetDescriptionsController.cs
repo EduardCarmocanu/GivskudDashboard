@@ -16,9 +16,9 @@ namespace GivskudDashboard.Controllers
 	[EnableCors("GivskudPolicy")]
 	public class GetDescriptionsController : ControllerBase
     {
-        private readonly ApplicationDataContext _context;
+        private readonly MarkersDataContext _context;
 
-        public GetDescriptionsController(ApplicationDataContext context)
+        public GetDescriptionsController(MarkersDataContext context)
         {
             _context = context;
         }

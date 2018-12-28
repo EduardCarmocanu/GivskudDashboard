@@ -15,9 +15,9 @@ namespace GivskudDashboard.Controllers
 	[Authorize]
 	public class OverviewController : Controller
     {
-		private readonly ApplicationDataContext _context;
+		private readonly MarkersDataContext _context;
 
-		public OverviewController(ApplicationDataContext context)
+		public OverviewController(MarkersDataContext context)
 		{
 			_context = context;
 		}

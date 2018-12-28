@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GivskudDashboard.Migrations
 {
-    [DbContext(typeof(ApplicationDataContext))]
+    [DbContext(typeof(MarkersDataContext))]
     partial class ApplicationDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

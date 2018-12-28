@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GivskudDashboard.Data
 {
-	public class ApplicationDataContext : DbContext
+	public class MarkersDataContext : DbContext
 	{
 		public DbSet<Marker> Markers { get; set; }
 		public DbSet<Description> Descriptions { get; set; }
@@ -33,7 +33,7 @@ namespace GivskudDashboard.Data
 				);
 		}
 
-		public ApplicationDataContext(DbContextOptions<ApplicationDataContext> options) : base(options)
+		public MarkersDataContext(DbContextOptions<MarkersDataContext> options) : base(options)
 		{
 			Database.EnsureCreated();
 		}

@@ -16,9 +16,9 @@ namespace GivskudDashboard.Controllers
 	[EnableCors("GivskudPolicy")]
     public class GetTypesController : ControllerBase
     {
-		private readonly ApplicationDataContext _context;
+		private readonly MarkersDataContext _context;
 
-		public GetTypesController(ApplicationDataContext context)
+		public GetTypesController(MarkersDataContext context)
 		{
 			_context = context;
 		}

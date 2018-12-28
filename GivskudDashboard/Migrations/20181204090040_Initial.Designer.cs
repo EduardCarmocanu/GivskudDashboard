@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GivskudDashboard.Migrations
 {
-    [DbContext(typeof(ApplicationDataContext))]
+    [DbContext(typeof(MarkersDataContext))]
     [Migration("20181204090040_Initial")]
     partial class Initial
     {

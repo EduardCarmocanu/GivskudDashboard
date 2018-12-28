@@ -15,9 +15,9 @@ namespace GivskudDashboard.Controllers
 	[Authorize]
 	public class MarkersController : Controller
     {
-        private readonly ApplicationDataContext _context;
+        private readonly MarkersDataContext _context;
 
-		public MarkersController(ApplicationDataContext context)
+		public MarkersController(MarkersDataContext context)
         {
             _context = context;
         }
