@@ -28,7 +28,7 @@ namespace GivskudDashboard
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			var cultureInfo = new CultureInfo("en-US");
+			CultureInfo cultureInfo = new CultureInfo("en-US");
 
 			CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 			CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
@@ -40,9 +40,9 @@ namespace GivskudDashboard
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
 
-			services.AddDbContext<ApplicationDataContext>(options =>
+			services.AddDbContext<MarkersDataContext>(options =>
 			{
-				options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+				options.UseSqlServer(Configuration.GetConnectionString("MarkersDataContext"));
 			});
 			services.AddDbContext<IdentityDataContext>(options =>
 			{
@@ -59,9 +59,8 @@ namespace GivskudDashboard
 				options.AddPolicy("GivskudPolicy",
 					policy =>
 					{
-						policy.WithOrigins("https://givskud.azurewebsites.net", "http://localhost:8080")
-							.AllowAnyHeader()
-							.AllowAnyMethod();
+						policy.WithOrigins("https://givskud.azurewebsites.net")
+							.AllowAnyHeader();
 					});
 			});
 		}
